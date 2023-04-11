@@ -3,13 +3,13 @@ import HeaderCartButton from "./HeaderCartButton";
 import classes from "./MainNavigation.module.css";
 import mealImage from "../../assets/meals.jpg";
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
 	return (
 		<Fragment>
 			<header className={classes.header}>
 				<h1>Meals</h1>
 
-				<HeaderCartButton />
+				<HeaderCartButton onClick={props.onShowCart} />
 			</header>
 			<div className={classes.main_image}>
 				<img
