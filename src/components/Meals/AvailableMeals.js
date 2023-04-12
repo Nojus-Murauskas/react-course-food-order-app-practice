@@ -1,37 +1,31 @@
+// import { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import classes from "./AvailableMeals.module.css";
 import MealItem from "./MealItem/MealItem";
-const DUMMY_MEALS = [
-	{
-		id: "m1",
-		name: "Sushi",
-		description: "Finest fish and veggies",
-		price: 22.99,
-	},
-	{
-		id: "m2",
-		name: "Schnitzel",
-		description: "A german specialty!",
-		price: 16.5,
-	},
-	{
-		id: "m3",
-		name: "Barbecue Burger",
-		description: "American, raw, meaty",
-		price: 12.99,
-	},
-	{
-		id: "m4",
-		name: "Green Bowl",
-		description: "Healthy...and green...",
-		price: 18.99,
-	},
-];
+import useHttpRequest from "../../hooks/use-httpRequest";
 
 const AvailableMeals = () => {
-	const mealsList = DUMMY_MEALS.map((meal) => (
+	const url = "https://react-demo-751eb-default-rtdb.europe-west1.firebasedatabase.app/meals.json";
+	// custom hook usage
+	const meals = useHttpRequest(url);
+
+	if (meals.isLoading) {
+		return (
+			<section className={classes.MealsLoading}>
+				<p>Loading...</p>
+			</section>
+		);
+	}
+	if (meals.error) {
+		return (
+			<section className={classes.MealsError}>
+				<p>{meals.error}</p>
+			</section>
+		);
+	}
+	const mealsList = meals.data.map((meal) => (
 		<MealItem
-            id={meal.id}
+			id={meal.id}
 			key={meal.id}
 			name={meal.name}
 			description={meal.description}
