@@ -38,7 +38,7 @@ const Cart = (props) => {
 		});
 		setIsSubmitting(false);
 		setDidSubmit(true);
-		cartCtx.clearCart()
+		cartCtx.clearCart();
 	};
 
 	const cartItems = (
@@ -77,7 +77,6 @@ const Cart = (props) => {
 
 	const cartModalContent = (
 		<>
-			{" "}
 			{cartItems}
 			<div className={classes.total}>
 				<span>Total Amount</span>
@@ -97,7 +96,7 @@ const Cart = (props) => {
 
 	const didSubmitModalContent = (
 		<>
-			<p>Successfully sent the order!</p>{" "}
+			<p>Successfully sent the order!</p>
 			<div className={classes.actions}>
 				<button
 					className={classes.button}
